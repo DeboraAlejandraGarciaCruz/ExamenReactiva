@@ -14,18 +14,16 @@ export default function App() {
       .then((data) => setProducts(data));
   }, []);
 
-  // Filtrar productos según la búsqueda
+  // Filtrado
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Contar solo las categorías de los productos filtrados
   const filteredCategoryData = filteredProducts.reduce((acc, product) => {
     acc[product.category] = (acc[product.category] || 0) + 1;
     return acc;
   }, {});
 
-  // Formatear datos para el gráfico
   const chartData = Object.entries(filteredCategoryData).map(([category, count]) => ({
     category,
     count,
